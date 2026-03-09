@@ -1,0 +1,70 @@
+project:
+  random_state: 42
+
+paths:
+  raw_dir: data/raw/yelp
+  business_filename: yelp_academic_dataset_business.json
+  modeling_table: artifacts/data/modeling_table.parquet
+  dataset_summary: artifacts/data/dataset_summary.json
+  feature_defaults: artifacts/data/feature_defaults.json
+  shap_background: artifacts/data/shap_background.parquet
+  metrics_csv: artifacts/metrics/model_metrics.csv
+  best_params_json: artifacts/metrics/best_params.json
+  mlp_tuning_csv: artifacts/metrics/mlp_tuning_results.csv
+
+problem:
+  target_column: high_rating
+  high_rating_threshold: 4.0
+  test_size: 0.30
+  max_rows: 80000
+
+features:
+  keep_columns:
+    - business_id
+    - city
+    - state
+    - review_count
+    - is_open
+    - latitude
+    - longitude
+    - stars
+    - categories
+    - attributes
+    - hours
+  top_categories_k: 20
+  attribute_booleans:
+    - RestaurantsDelivery
+    - RestaurantsTakeOut
+    - RestaurantsReservations
+    - OutdoorSeating
+    - RestaurantsGoodForGroups
+    - BikeParking
+    - GoodForKids
+    - BusinessAcceptsCreditCards
+
+modeling:
+  cv_folds: 5
+  scoring: f1
+  logistic:
+    max_iter: 2000
+  decision_tree_grid:
+    max_depth: [3, 5, 7, 10]
+    min_samples_leaf: [5, 10, 20, 50]
+  random_forest_grid:
+    n_estimators: [50, 100, 200]
+    max_depth: [3, 5, 8]
+  xgboost_grid:
+    n_estimators: [50, 100, 200]
+    max_depth: [3, 4, 5, 6]
+    learning_rate: [0.01, 0.05, 0.1]
+
+mlp:
+  epochs: 25
+  batch_size: 256
+  validation_split: 0.2
+  early_stopping_patience: 4
+  bonus_tuning:
+    hidden_units: [64, 128]
+    dropout_rates: [0.0, 0.2]
+    learning_rates: [0.001, 0.0005]
+    max_trials: 6

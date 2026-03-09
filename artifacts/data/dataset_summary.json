@@ -1,0 +1,43 @@
+{
+  "categorical_feature_count": 2,
+  "class_distribution": {
+    "0": 40374,
+    "1": 39626
+  },
+  "dataset_name": "Yelp Academic Dataset (business table)",
+  "figures": [
+    "target_distribution.png",
+    "review_count_distribution_by_target.png",
+    "review_count_boxplot_by_target.png",
+    "high_rating_share_by_state_top15.png",
+    "high_rating_share_by_top_categories.png",
+    "correlation_heatmap.png"
+  ],
+  "n_features": 37,
+  "n_rows": 80000,
+  "numeric_feature_count": 35,
+  "target_column": "high_rating",
+  "target_definition": "high_rating = 1 if stars >= 4.0",
+  "top_categories": [
+    "Restaurants",
+    "Food",
+    "Shopping",
+    "Home Services",
+    "Beauty & Spas",
+    "Nightlife",
+    "Health & Medical",
+    "Local Services",
+    "Bars",
+    "Automotive",
+    "Event Planning & Services",
+    "Sandwiches",
+    "American (Traditional)",
+    "Active Life",
+    "Pizza",
+    "Coffee & Tea",
+    "Fast Food",
+    "Breakfast & Brunch",
+    "American (New)",
+    "Hotels & Travel"
+  ]
+}
